@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option go_package = "./";
+package api;
+
+service FileDownloader {
+  rpc Upload(Stream) returns (Code);
+  rpc Download(Stream) returns (Stream);
+}
+
+message Stream {
+  string fileName = 1;
+  bytes stream = 2;
+}
+
+message Code {
+  StatusCode code = 1;
+}
+
+enum StatusCode {
+  Ok = 0;
+  Failed = 1;
+}
